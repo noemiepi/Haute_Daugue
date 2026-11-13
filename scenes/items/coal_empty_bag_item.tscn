@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b2g326ocbty7n"]
+
+[ext_resource type="Texture2D" uid="uid://cuhllq60cuyiy" path="res://assets/images/utils/empty_little_bag.png" id="1_fh71b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxh2x"]
+radius = 5.0
+height = 14.0
+
+[node name="CoalEmptyBagItem" type="Node2D" unique_id=60305688]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1696093322]
+texture = ExtResource("1_fh71b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010229401]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1250805078]
+shape = SubResource("CapsuleShape2D_bxh2x")

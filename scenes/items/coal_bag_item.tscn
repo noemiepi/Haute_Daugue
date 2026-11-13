@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://redmqt67ek7g"]
+
+[ext_resource type="Texture2D" uid="uid://d13nokch3s5ar" path="res://assets/images/utils/coal_bag.png" id="1_pyrlj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxh2x"]
+radius = 5.0
+height = 14.0
+
+[node name="CoalBagItem" type="Node2D" unique_id=60305688]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1696093322]
+texture = ExtResource("1_pyrlj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2010229401]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1250805078]
+shape = SubResource("CapsuleShape2D_bxh2x")

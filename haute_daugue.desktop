@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Haute Daugue - the game
+Comment=Game jam 2026 42
+Exec=/home/roandrie/roandrie/perso/game_jam_2026/haute_daugue_the_game.x86_64
+Icon=/home/roandrie/roandrie/perso/game_jam_2026/icon.png
+Terminal=false
+Type=Application
+Categories=Game;

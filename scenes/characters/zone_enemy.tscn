@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dejpxwik4a48e"]
+
+[ext_resource type="Script" uid="uid://ccc7sxlwiy6dp" path="res://scripts/enemy_logic/zone_enemy.gd" id="1_7qtg3"]
+[ext_resource type="AudioStream" uid="uid://c6iirt7wasvli" path="res://assets/sounds_effect/enemy/detected1.ogg" id="2_2bgn6"]
+[ext_resource type="Texture2D" uid="uid://qbnpaebr52sr" path="res://assets/images/enemies/place_holder_enemy.png" id="2_frkoj"]
+[ext_resource type="AudioStream" uid="uid://cgedmj0oo2lln" path="res://assets/sounds_effect/enemy/detected2.ogg" id="3_isw3v"]
+[ext_resource type="AudioStream" uid="uid://dm6fctd0h4y6" path="res://assets/sounds_effect/enemy/detected3.ogg" id="4_eo8o1"]
+[ext_resource type="AudioStream" uid="uid://csfnvmbag0bo8" path="res://assets/sounds_effect/enemy/detected4.ogg" id="5_7mnll"]
+[ext_resource type="AudioStream" uid="uid://bo3vrqtjhlt8u" path="res://assets/sounds_effect/enemy/detected5.ogg" id="6_ym3fd"]
+[ext_resource type="AudioStream" uid="uid://bn3pgi3enaoyw" path="res://assets/sounds_effect/enemy/detected6.ogg" id="7_x8ltw"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7qtg3"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qtg3"]
+size = Vector2(60, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21x0f"]
+atlas = ExtResource("2_frkoj")
+region = Rect2(100, 89, 150, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgk6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21x0f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2e6v"]
+size = Vector2(62, 97)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3k4es"]
+radius = 112.11155
+
+[node name="ZoneEnemy" type="Node2D" unique_id=1284144452]
+
+[node name="PatrolZone" type="NavigationRegion2D" parent="." unique_id=705118532]
+unique_name_in_owner = true
+navigation_polygon = SubResource("NavigationPolygon_7qtg3")
+
+[node name="Enemy" type="CharacterBody2D" parent="PatrolZone" unique_id=742301259]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_7qtg3")
+detect_sounds = Array[AudioStream]([ExtResource("2_2bgn6"), ExtResource("3_isw3v"), ExtResource("4_eo8o1"), ExtResource("5_7mnll"), ExtResource("6_ym3fd"), ExtResource("7_x8ltw")])
+
+[node name="Hitbox" type="CollisionShape2D" parent="PatrolZone/Enemy" unique_id=768504173]
+position = Vector2(-7, 0.5)
+shape = SubResource("RectangleShape2D_7qtg3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PatrolZone/Enemy" unique_id=996128843]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jgk6k")
+
+[node name="KillZone" type="Area2D" parent="PatrolZone/Enemy" unique_id=1960743156]
+collision_layer = 8
+collision_mask = 3
+
+[node name="KillZone" type="CollisionShape2D" parent="PatrolZone/Enemy/KillZone" unique_id=301664362]
+position = Vector2(-7, 0.5)
+shape = SubResource("RectangleShape2D_f2e6v")
+
+[node name="Zone" type="Area2D" parent="PatrolZone/Enemy" unique_id=1115124019]
+collision_layer = 8
+collision_mask = 3
+
+[node name="DetectionZone" type="CollisionShape2D" parent="PatrolZone/Enemy/Zone" unique_id=1708561080]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_3k4es")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="PatrolZone/Enemy" unique_id=166283954]
+path_desired_distance = 32.0
+target_desired_distance = 8.0
+avoidance_enabled = true
+max_speed = 250.0
+
+[node name="DetectSound" type="AudioStreamPlayer2D" parent="PatrolZone/Enemy" unique_id=2086292551]
+
+[connection signal="area_entered" from="PatrolZone/Enemy/KillZone" to="PatrolZone/Enemy" method="_on_kill_zone_area_entered"]
+[connection signal="body_entered" from="PatrolZone/Enemy/KillZone" to="PatrolZone/Enemy" method="_on_kill_zone_body_entered"]

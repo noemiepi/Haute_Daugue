@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://chpgnhax6kktl"]
+
+[ext_resource type="FontFile" uid="uid://bx0fet0035td7" path="res://assets/font/Born2bSportyFS.otf" id="1_n54lc"]
+[ext_resource type="Script" uid="uid://ru3qs7any2pd" path="res://scripts/menu/pause_menu.gd" id="1_ux7g8"]
+[ext_resource type="PackedScene" uid="uid://bcdna5g812w63" path="res://scenes/menu/option_menu.tscn" id="3_xtxec"]
+[ext_resource type="PackedScene" uid="uid://7e6w434bhbbu" path="res://scenes/utils/sound_manager.tscn" id="4_msl3b"]
+
+[node name="PauseMenu" type="Control" unique_id=1277780246]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("1_ux7g8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=373297907]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=437637198]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -294.0
+offset_top = 8.0
+offset_right = 146.0
+offset_bottom = 234.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_n54lc")
+theme_override_font_sizes/font_size = 200
+text = "PAUSE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1511801266]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -334.0
+offset_top = -704.0
+offset_right = 246.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+metadata/_edit_group_ = true
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1725588582]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_n54lc")
+theme_override_font_sizes/font_size = 150
+text = "CONTINUE"
+
+[node name="ConfigButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=997777923]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_n54lc")
+theme_override_font_sizes/font_size = 150
+text = "CONFIG"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=630145489]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_n54lc")
+theme_override_font_sizes/font_size = 150
+text = "MAIN MENU"
+
+[node name="OptionMenu" parent="." unique_id=869416319 instance=ExtResource("3_xtxec")]
+process_mode = 3
+layout_mode = 1
+
+[node name="SoundManager" parent="." unique_id=336907730 instance=ExtResource("4_msl3b")]
+layout_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ConfigButton" to="." method="_on_config_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="window_close" from="OptionMenu" to="." method="_on_option_menu_window_close"]

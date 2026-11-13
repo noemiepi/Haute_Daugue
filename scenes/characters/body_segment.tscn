@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c0shundvsiap3"]
+
+[ext_resource type="Script" uid="uid://ddnjqa68b551b" path="res://scripts/player_logic/body_segment.gd" id="1_lwxk0"]
+[ext_resource type="Texture2D" uid="uid://d3teiexq4jvjv" path="res://assets/images/player/player_middle.png" id="2_lwxk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwxk0"]
+size = Vector2(1, 5)
+
+[node name="BodySegment" type="Area2D" unique_id=1993123712 groups=["player_body"]]
+position = Vector2(-11.833, -1.667)
+collision_layer = 2
+script = ExtResource("1_lwxk0")
+
+[node name="BodySprite2D" type="Sprite2D" parent="." unique_id=443837950]
+texture = ExtResource("2_lwxk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1248197485]
+visible = false
+position = Vector2(-0.5, 0.008)
+shape = SubResource("RectangleShape2D_lwxk0")

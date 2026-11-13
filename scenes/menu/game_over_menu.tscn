@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cyj7oxqx6ec8f"]
+
+[ext_resource type="Script" uid="uid://ukv82usdy4t0" path="res://scripts/menu/game_over_menu.gd" id="1_fa54j"]
+[ext_resource type="FontFile" uid="uid://bx0fet0035td7" path="res://assets/font/Born2bSportyFS.otf" id="2_m1m4j"]
+[ext_resource type="Texture2D" uid="uid://dtllbf7le3nde" path="res://assets/images/ui/game_over.png" id="3_6lnmk"]
+[ext_resource type="PackedScene" uid="uid://7e6w434bhbbu" path="res://scenes/utils/sound_manager.tscn" id="3_m1m4j"]
+
+[node name="GameOverMenu" type="Control" unique_id=1277780246]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fa54j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=373297907]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=437637198]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -394.0
+offset_top = -113.0
+offset_right = 394.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_m1m4j")
+theme_override_font_sizes/font_size = 200
+text = "GAME-OVER"
+
+[node name="GameOver" type="Sprite2D" parent="CanvasLayer" unique_id=1085896068]
+position = Vector2(959.99994, 331.99997)
+scale = Vector2(0.59999996, 0.52666664)
+texture = ExtResource("3_6lnmk")
+
+[node name="Score" type="Label" parent="CanvasLayer" unique_id=970695685]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -120.0
+offset_right = 240.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7591811, 0.4920646, 0.46641707, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("2_m1m4j")
+theme_override_font_sizes/font_size = 160
+text = "Score: 0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1511801266]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -480.0
+offset_right = 290.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+metadata/_edit_group_ = true
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1725588582]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m1m4j")
+theme_override_font_sizes/font_size = 150
+text = "RESTART"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=630145489]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m1m4j")
+theme_override_font_sizes/font_size = 150
+text = "MAIN MENU"
+
+[node name="SoundManager" parent="." unique_id=336907730 instance=ExtResource("3_m1m4j")]
+layout_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

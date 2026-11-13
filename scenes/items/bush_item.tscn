@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://csu1gx3rvjkku"]
+
+[ext_resource type="Script" uid="uid://bausmd7j5su32" path="res://scripts/items/bush_item.gd" id="1_ew4vw"]
+[ext_resource type="AudioStream" uid="uid://bx37tst3o0yy7" path="res://assets/sounds_effect/other/sausage_found.mp3" id="1_p2k30"]
+[ext_resource type="AudioStream" uid="uid://ysejm7ueipxv" path="res://assets/sounds_effect/other/stick_found.mp3" id="2_iulfj"]
+[ext_resource type="Texture2D" uid="uid://d3ajik7yy2ffk" path="res://assets/images/utils/green_bush.png" id="2_u4dm8"]
+[ext_resource type="AudioStream" uid="uid://if88im77ih15" path="res://assets/sounds_effect/other/golden_sausage_found.mp3" id="3_siqj2"]
+[ext_resource type="Texture2D" uid="uid://wm4ub76ocx" path="res://assets/images/ui/E_key.png" id="4_dx4vg"]
+[ext_resource type="Texture2D" uid="uid://0753xyqaqt48" path="res://assets/images/collectibles/sausage.png" id="5_hehuq"]
+[ext_resource type="FontFile" uid="uid://bx0fet0035td7" path="res://assets/font/Born2bSportyFS.otf" id="6_igkfk"]
+[ext_resource type="Texture2D" uid="uid://cw7q2sl1ir511" path="res://assets/images/collectibles/golden_sausage.png" id="6_jfa21"]
+[ext_resource type="Texture2D" uid="uid://c1tq4l0r6m7a2" path="res://assets/images/utils/stick.png" id="7_ew4vw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wghni"]
+radius = 13.99216
+height = 43.97536
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6k6ok"]
+height = 31.997934
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ppd"]
+atlas = ExtResource("4_dx4vg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjpj1"]
+atlas = ExtResource("4_dx4vg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hehuq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1ppd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjpj1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[node name="BushItem" type="Node2D" unique_id=509817372]
+script = ExtResource("1_ew4vw")
+
+[node name="Visual" type="Node2D" parent="." unique_id=967091205]
+scale = Vector2(3, 3)
+
+[node name="BushSprite" type="Sprite2D" parent="Visual" unique_id=637246351]
+position = Vector2(-0.99999964, 2.125001)
+scale = Vector2(1.1428571, 1.1357143)
+texture = ExtResource("2_u4dm8")
+
+[node name="Area2D" type="Area2D" parent="Visual" unique_id=660562410]
+
+[node name="CollisionDetected" type="CollisionShape2D" parent="Visual/Area2D" unique_id=1998878270]
+position = Vector2(1, -2)
+rotation = -1.5373285
+shape = SubResource("CapsuleShape2D_wghni")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Visual" unique_id=1681683304]
+
+[node name="CollisionBlock" type="CollisionShape2D" parent="Visual/StaticBody2D" unique_id=1319504767]
+position = Vector2(0.9999962, -0.9999981)
+rotation = -1.5594177
+shape = SubResource("CapsuleShape2D_6k6ok")
+
+[node name="ButtonAnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1508906242]
+visible = false
+position = Vector2(16, -11.999999)
+scale = Vector2(1.21875, 1.1093754)
+sprite_frames = SubResource("SpriteFrames_hehuq")
+autoplay = "default"
+
+[node name="Sounds" type="Node2D" parent="." unique_id=963088021]
+
+[node name="SausageFound" type="AudioStreamPlayer" parent="Sounds" unique_id=1174830755]
+stream = ExtResource("1_p2k30")
+volume_db = 5.0
+bus = &"Sound Effect"
+
+[node name="StickFound" type="AudioStreamPlayer" parent="Sounds" unique_id=415135488]
+stream = ExtResource("2_iulfj")
+volume_db = 5.0
+bus = &"Sound Effect"
+
+[node name="GoldenSausageFound" type="AudioStreamPlayer" parent="Sounds" unique_id=73356638]
+stream = ExtResource("3_siqj2")
+volume_db = 5.0
+bus = &"Sound Effect"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1610755182]
+
+[node name="Sprites" type="Node2D" parent="CanvasLayer" unique_id=2145390605]
+
+[node name="SausageSprite" type="Sprite2D" parent="CanvasLayer/Sprites" unique_id=1743230337]
+visible = false
+position = Vector2(1018, 800.00006)
+scale = Vector2(9.109374, 8.484374)
+texture = ExtResource("5_hehuq")
+
+[node name="GoldenSausage" type="Sprite2D" parent="CanvasLayer/Sprites" unique_id=1680053224]
+visible = false
+position = Vector2(997, 717.00006)
+scale = Vector2(9.109374, 8.484374)
+texture = ExtResource("6_jfa21")
+
+[node name="Stick" type="Sprite2D" parent="CanvasLayer/Sprites" unique_id=82900360]
+visible = false
+position = Vector2(996, 748.00006)
+scale = Vector2(1.9054688, 1.7304684)
+texture = ExtResource("7_ew4vw")
+
+[node name="Texts" type="Control" parent="CanvasLayer" unique_id=1029338417]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SausageFound" type="Label" parent="CanvasLayer/Texts" unique_id=585901319]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 222.0
+offset_top = 838.0
+offset_right = 1731.0
+offset_bottom = 986.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_igkfk")
+theme_override_font_sizes/font_size = 120
+text = "YOU FOUND A SAUSAGE!"
+horizontal_alignment = 1
+
+[node name="GoldenSausageFound" type="Label" parent="CanvasLayer/Texts" unique_id=1880517458]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 222.0
+offset_top = 838.0
+offset_right = 1731.0
+offset_bottom = 986.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_igkfk")
+theme_override_font_sizes/font_size = 120
+text = "YOU FOUND A GOLDEN SAUSAGE!"
+horizontal_alignment = 1
+
+[node name="StickFound" type="Label" parent="CanvasLayer/Texts" unique_id=1103465742]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 222.0
+offset_top = 838.0
+offset_right = 1731.0
+offset_bottom = 986.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_igkfk")
+theme_override_font_sizes/font_size = 120
+text = "YOU FOUND A STICK..."
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Visual/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Visual/Area2D" to="." method="_on_area_2d_body_exited"]

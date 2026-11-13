@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://7e6w434bhbbu"]
+
+[ext_resource type="Script" uid="uid://dnxqswmreoqk8" path="res://scripts/ui/sound_manager.gd" id="1_eollh"]
+[ext_resource type="AudioStream" uid="uid://blnlxjw0bvk2y" path="res://assets/sounds_effect/ui/click.ogg" id="2_u6s34"]
+
+[node name="SoundManager" type="Control" unique_id=336907730]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eollh")
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="." unique_id=1069449626]
+stream = ExtResource("2_u6s34")
+volume_db = 3.0
+bus = &"Sound Effect"

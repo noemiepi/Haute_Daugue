@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dyvy4j2ud3mso"]
+
+[ext_resource type="Script" uid="uid://ccmm76hxik2id" path="res://scripts/ui/ui.gd" id="1_0tvcd"]
+[ext_resource type="Texture2D" uid="uid://0753xyqaqt48" path="res://assets/images/collectibles/sausage.png" id="1_cby6e"]
+[ext_resource type="FontFile" uid="uid://bx0fet0035td7" path="res://assets/font/Born2bSportyFS.otf" id="2_xh2rl"]
+[ext_resource type="Texture2D" uid="uid://cw7q2sl1ir511" path="res://assets/images/collectibles/golden_sausage.png" id="3_8iq1l"]
+
+[node name="UI" type="Control" unique_id=598858722]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0tvcd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=945526219]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1868909700]
+visible = false
+offset_left = 1615.5
+offset_top = 9.125
+offset_right = 1912.5
+offset_bottom = 115.125
+color = Color(0.21568628, 0.21568628, 0.21568628, 0.47058824)
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer" unique_id=1241395355]
+position = Vector2(1704.5, 75.125)
+scale = Vector2(3.671874, 3.9414063)
+texture = ExtResource("1_cby6e")
+
+[node name="GoldenSausage" type="Sprite2D" parent="CanvasLayer" unique_id=823155057]
+position = Vector2(1889, 222.00003)
+rotation = -1.3837283
+scale = Vector2(3.671874, 3.9414063)
+texture = ExtResource("3_8iq1l")
+
+[node name="Score" type="Label" parent="CanvasLayer" unique_id=459086698]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.5
+offset_top = -41.875
+offset_right = -23.5
+offset_bottom = 128.125
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_xh2rl")
+theme_override_font_sizes/font_size = 150
+text = "0"
+
+[node name="Timer" type="Label" parent="CanvasLayer" unique_id=1276093363]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = -25.0
+offset_right = 24.0
+offset_bottom = 111.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_xh2rl")
+theme_override_font_sizes/font_size = 120
+text = "0"
+
+[node name="StartText" type="Label" parent="CanvasLayer" unique_id=1683324744]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -674.0
+offset_top = 751.0
+offset_right = 739.0
+offset_bottom = 977.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_xh2rl")
+theme_override_font_sizes/font_size = 200
+text = "EAT ALL SAUSAGES!!!"
+
+[node name="MidText" type="Label" parent="CanvasLayer" unique_id=1880130388]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -770.0
+offset_top = 588.0
+offset_right = 739.0
+offset_bottom = 1002.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_xh2rl")
+theme_override_font_sizes/font_size = 120
+text = "THE DOOR IS OPEN. EAT MORE
+SAUSAGES AND GO TO THE BARBECUE
+TO FINISH."
+horizontal_alignment = 1
+
+[node name="EasterEgg" type="Label" parent="CanvasLayer" unique_id=1301856019]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -810.0
+offset_top = 907.0
+offset_right = 796.0
+offset_bottom = 1062.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_xh2rl")
+theme_override_font_sizes/font_size = 120
+text = "Something calls you from the house..."
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=881613740]
+wait_time = 60.0
+one_shot = true

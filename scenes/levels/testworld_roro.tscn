@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://jxohdyjr73rd"]
+
+[ext_resource type="Script" uid="uid://m23mxluwj23c" path="res://scripts/test/test_defeat.gd" id="1_e64gi"]
+[ext_resource type="PackedScene" uid="uid://6eaer1yfodjp" path="res://scenes/collectibles/sausage_collectible.tscn" id="2_pqdcf"]
+[ext_resource type="PackedScene" uid="uid://byyl6efhbuf0h" path="res://scenes/characters/player.tscn" id="3_0o6oc"]
+[ext_resource type="PackedScene" uid="uid://cyj7oxqx6ec8f" path="res://scenes/menu/game_over_menu.tscn" id="5_kqj1c"]
+[ext_resource type="PackedScene" uid="uid://chpgnhax6kktl" path="res://scenes/menu/pause_menu.tscn" id="6_c80sh"]
+[ext_resource type="PackedScene" uid="uid://bg2d3vkfj2hr8" path="res://scenes/items/barbecue_item.tscn" id="6_e64gi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfyvx"]
+radius = 29.068884
+
+[node name="TestWorldRoro" type="Node2D" unique_id=1783131131]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=267639443]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2066247206]
+position = Vector2(496, -16)
+shape = SubResource("CircleShape2D_lfyvx")
+script = ExtResource("1_e64gi")
+
+[node name="Label" type="Label" parent="Area2D" unique_id=1977341265]
+offset_left = 448.0
+offset_top = -29.0
+offset_right = 546.0
+offset_bottom = 21.0
+text = "defeat"
+horizontal_alignment = 1
+
+[node name="Collectible" type="Node2D" parent="." unique_id=1828956741]
+
+[node name="SausageCollectible4" parent="Collectible" unique_id=208694063 instance=ExtResource("2_pqdcf")]
+position = Vector2(207, 349)
+
+[node name="SausageCollectible" parent="Collectible" unique_id=536171718 instance=ExtResource("2_pqdcf")]
+position = Vector2(212, 206)
+
+[node name="SausageCollectible2" parent="Collectible" unique_id=1384700339 instance=ExtResource("2_pqdcf")]
+position = Vector2(230, 482)
+
+[node name="SausageCollectible3" parent="Collectible" unique_id=1736146835 instance=ExtResource("2_pqdcf")]
+position = Vector2(198, 74)
+
+[node name="SausageCollectible5" parent="Collectible" unique_id=140321386 instance=ExtResource("2_pqdcf")]
+position = Vector2(228, 630)
+
+[node name="SausageCollectible6" parent="Collectible" unique_id=985476783 instance=ExtResource("2_pqdcf")]
+position = Vector2(1077, 639)
+
+[node name="SausageCollectible7" parent="Collectible" unique_id=2052049564 instance=ExtResource("2_pqdcf")]
+position = Vector2(1062, 489)
+
+[node name="SausageCollectible8" parent="Collectible" unique_id=1497897708 instance=ExtResource("2_pqdcf")]
+position = Vector2(1075, 328)
+
+[node name="SausageCollectible9" parent="Collectible" unique_id=564475405 instance=ExtResource("2_pqdcf")]
+position = Vector2(1085, 223)
+
+[node name="SausageCollectible10" parent="Collectible" unique_id=1071229169 instance=ExtResource("2_pqdcf")]
+position = Vector2(1047, 77)
+
+[node name="Player" parent="." unique_id=27596069 instance=ExtResource("3_0o6oc")]
+position = Vector2(667, 387)
+
+[node name="MenuGroup" type="Control" parent="." unique_id=1620578769]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverMenu" parent="MenuGroup" unique_id=1277780246 instance=ExtResource("5_kqj1c")]
+layout_mode = 1
+
+[node name="PauseMenu" parent="MenuGroup" unique_id=1167777204 instance=ExtResource("6_c80sh")]
+layout_mode = 1
+offset_left = -22.0
+offset_right = 18.0
+
+[node name="BarbecueItem" parent="." unique_id=1174475062 instance=ExtResource("6_e64gi")]
+position = Vector2(440.00003, 602)
+
+[connection signal="body_entered" from="Area2D" to="Area2D/CollisionShape2D" method="_on_area_2d_body_entered"]

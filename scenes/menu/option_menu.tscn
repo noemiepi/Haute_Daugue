@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bcdna5g812w63"]
+
+[ext_resource type="Script" uid="uid://bnonftnp8kg1r" path="res://scripts/menu/option_menu.gd" id="1_2lmg6"]
+[ext_resource type="FontFile" uid="uid://bx0fet0035td7" path="res://assets/font/Born2bSportyFS.otf" id="1_vm0b0"]
+[ext_resource type="PackedScene" uid="uid://7e6w434bhbbu" path="res://scenes/utils/sound_manager.tscn" id="3_h85is"]
+
+[node name="OptionMenu" type="Control" unique_id=869416319]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -990.0
+offset_top = -540.0
+offset_right = -990.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2lmg6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=458132904]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1117496684]
+anchors_preset = -1
+anchor_right = 52.775
+anchor_bottom = 29.175
+offset_left = -80.0
+offset_top = -148.0
+offset_right = -80.0
+offset_bottom = -148.0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=1566961408]
+layout_mode = 0
+offset_left = 716.0
+offset_top = 940.0
+offset_right = 1197.0
+offset_bottom = 1118.0
+metadata/_edit_group_ = true
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer2" unique_id=275017603]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vm0b0")
+theme_override_font_sizes/font_size = 150
+text = "BACK"
+
+[node name="AudioControlGroup" type="Control" parent="CanvasLayer/Panel" unique_id=1411274061]
+anchors_preset = 0
+offset_left = 491.0
+offset_top = 575.0
+offset_right = 531.0
+offset_bottom = 615.0
+metadata/_edit_group_ = true
+
+[node name="AudioControl" type="Label" parent="CanvasLayer/Panel/AudioControlGroup" unique_id=1854904576]
+layout_mode = 0
+offset_left = -336.0
+offset_top = -262.0
+offset_right = 365.0
+offset_bottom = -160.0
+theme_override_fonts/font = ExtResource("1_vm0b0")
+theme_override_font_sizes/font_size = 90
+text = "Audio control"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/AudioControlGroup" unique_id=6758404]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -196.0
+offset_right = 196.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer" unique_id=1966397495]
+layout_mode = 2
+
+[node name="General" type="Label" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=221382842]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vm0b0")
+theme_override_font_sizes/font_size = 80
+text = "General"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=1761129701]
+layout_mode = 2
+step = 0.05
+value = 50.0
+
+[node name="Music" type="Label" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=2135110252]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vm0b0")
+theme_override_font_sizes/font_size = 80
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=1583613136]
+layout_mode = 2
+step = 0.05
+value = 100.0
+
+[node name="SoundEffect" type="Label" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=669480334]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vm0b0")
+theme_override_font_sizes/font_size = 80
+text = "SoundEffect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundEffectSlider" type="HSlider" parent="CanvasLayer/Panel/AudioControlGroup/VBoxContainer/GridContainer" unique_id=641593396]
+layout_mode = 2
+step = 0.05
+value = 100.0
+
+[node name="SoundManager" parent="." unique_id=336907730 instance=ExtResource("3_h85is")]
+layout_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

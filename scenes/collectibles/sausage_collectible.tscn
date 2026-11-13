@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://6eaer1yfodjp"]
+
+[ext_resource type="Script" uid="uid://qujtjuc3a6pp" path="res://scripts/collectibles/sausage_collectible.gd" id="1_m63yt"]
+[ext_resource type="Texture2D" uid="uid://c0wbhyuf6ckfv" path="res://assets/images/collectibles/hot_dog.png" id="2_r1ppd"]
+[ext_resource type="Texture2D" uid="uid://wm4ub76ocx" path="res://assets/images/ui/E_key.png" id="3_r1ppd"]
+[ext_resource type="Texture2D" uid="uid://0753xyqaqt48" path="res://assets/images/collectibles/sausage.png" id="3_rjpj1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58sc3"]
+atlas = ExtResource("2_r1ppd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vslqp"]
+atlas = ExtResource("2_r1ppd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwq8o"]
+atlas = ExtResource("2_r1ppd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1r8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58sc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vslqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwq8o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1ppd"]
+atlas = ExtResource("3_r1ppd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjpj1"]
+atlas = ExtResource("3_r1ppd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58sc3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1ppd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjpj1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1ppd"]
+radius = 14.035668
+
+[node name="SausageCollectible" type="Area2D" unique_id=208694063]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_m63yt")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1858482049]
+
+[node name="HotDogAnimated" type="AnimatedSprite2D" parent="Sprites" unique_id=528558432]
+visible = false
+position = Vector2(2, -15)
+scale = Vector2(2.4375, 2.3125)
+sprite_frames = SubResource("SpriteFrames_r1r8p")
+autoplay = "default"
+frame_progress = 0.037996504
+metadata/_edit_lock_ = true
+
+[node name="Sausage1" type="Sprite2D" parent="Sprites" unique_id=1817916294]
+visible = false
+position = Vector2(5, 1.0000005)
+rotation = -0.26907158
+scale = Vector2(1.4050573, 1.3875104)
+texture = ExtResource("3_rjpj1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2022566017]
+polygon = PackedVector2Array(11, 11, 30, -7, 20, -17, -4, -17, -13, -13, -26, 2, -18, 12, -2, 14)
+
+[node name="ButtonAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=169401165]
+visible = false
+position = Vector2(28, -28.000004)
+scale = Vector2(3.2499998, 3.1875)
+sprite_frames = SubResource("SpriteFrames_58sc3")
+autoplay = "default"
+frame_progress = 0.9260253
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=677793107]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1307249087]
+position = Vector2(2, -2)
+shape = SubResource("CircleShape2D_r1ppd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

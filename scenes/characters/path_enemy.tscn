@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://c3wbnw4bd5ns1"]
+
+[ext_resource type="Script" uid="uid://c2vnk0pv2oagx" path="res://scripts/enemy_logic/path_enemy.gd" id="1_fulqv"]
+[ext_resource type="Texture2D" uid="uid://qbnpaebr52sr" path="res://assets/images/enemies/place_holder_enemy.png" id="2_f2e6v"]
+[ext_resource type="AudioStream" uid="uid://c6iirt7wasvli" path="res://assets/sounds_effect/enemy/detected1.ogg" id="2_u3w2e"]
+[ext_resource type="AudioStream" uid="uid://cgedmj0oo2lln" path="res://assets/sounds_effect/enemy/detected2.ogg" id="3_1jbbt"]
+[ext_resource type="AudioStream" uid="uid://dm6fctd0h4y6" path="res://assets/sounds_effect/enemy/detected3.ogg" id="4_sx4so"]
+[ext_resource type="AudioStream" uid="uid://csfnvmbag0bo8" path="res://assets/sounds_effect/enemy/detected4.ogg" id="5_pgvas"]
+[ext_resource type="AudioStream" uid="uid://bo3vrqtjhlt8u" path="res://assets/sounds_effect/enemy/detected5.ogg" id="6_t78at"]
+[ext_resource type="AudioStream" uid="uid://bn3pgi3enaoyw" path="res://assets/sounds_effect/enemy/detected6.ogg" id="7_kubfi"]
+
+[sub_resource type="Curve2D" id="Curve2D_fulqv"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg2ti"]
+resource_local_to_scene = true
+size = Vector2(60, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21x0f"]
+atlas = ExtResource("2_f2e6v")
+region = Rect2(100, 89, 150, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgk6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21x0f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2e6v"]
+resource_local_to_scene = true
+size = Vector2(62, 97)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3k4es"]
+resource_local_to_scene = true
+radius = 112.11155
+
+[node name="Enemy_core" type="Node2D" unique_id=1404652295]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1973928296]
+curve = SubResource("Curve2D_fulqv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=717583154]
+rotates = false
+
+[node name="Enemy" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=541638004]
+position = Vector2(9, 0)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_fulqv")
+detect_sounds = Array[AudioStream]([ExtResource("2_u3w2e"), ExtResource("3_1jbbt"), ExtResource("4_sx4so"), ExtResource("5_pgvas"), ExtResource("6_t78at"), ExtResource("7_kubfi")])
+
+[node name="Hitbox" type="CollisionShape2D" parent="Path2D/PathFollow2D/Enemy" unique_id=1034386273]
+position = Vector2(-7, 0.5)
+shape = SubResource("RectangleShape2D_jg2ti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Enemy" unique_id=86853865]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jgk6k")
+
+[node name="KillZone" type="Area2D" parent="Path2D/PathFollow2D/Enemy" unique_id=1171527382]
+collision_layer = 8
+collision_mask = 3
+
+[node name="KillZone" type="CollisionShape2D" parent="Path2D/PathFollow2D/Enemy/KillZone" unique_id=333962161]
+position = Vector2(-7, 0.5)
+shape = SubResource("RectangleShape2D_f2e6v")
+
+[node name="Zone" type="Area2D" parent="Path2D/PathFollow2D/Enemy" unique_id=1173684030]
+collision_layer = 8
+collision_mask = 3
+
+[node name="DetectionZone" type="CollisionShape2D" parent="Path2D/PathFollow2D/Enemy/Zone" unique_id=376523223]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_3k4es")
+
+[node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D/Enemy" unique_id=1303997129]
+
+[node name="DetectSound" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/Enemy" unique_id=750258940]
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy/KillZone" to="Path2D/PathFollow2D/Enemy" method="_on_kill_zone_body_entered"]
+[connection signal="area_shape_entered" from="Path2D/PathFollow2D/Enemy/Zone" to="Path2D/PathFollow2D/Enemy" method="_on_zone_area_shape_entered"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy/Zone" to="Path2D/PathFollow2D/Enemy" method="_on_zone_body_entered"]
+[connection signal="body_exited" from="Path2D/PathFollow2D/Enemy/Zone" to="Path2D/PathFollow2D/Enemy" method="_on_zone_body_exited"]
